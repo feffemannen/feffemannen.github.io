@@ -400,18 +400,20 @@ form p{
 }
 
 a.title span {
-  display: none;
-} 
+  display:none;
+}
+
 a.title{
-	position: relative;	text-decoration:none;
+	position: relative;
+	text-decoration:none;
 }
 a.title:hover{
 	text-decoration:none;
 }
 
 a.title:focus{
-    outline-style: none;
-    }
+	outline-style:none;
+}
 
 a.title:hover span {
   position: absolute;

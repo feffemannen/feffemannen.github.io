@@ -1,39 +1,343 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<meta name="description" content="Personal homepage of Fredrik Engström, Senior Lecturer and Docent in Logic." />
-<meta name="keywords" content="Fredrik Engström, logic, mathematical logic, team semantics, philosophy" />
-<title>Fredrik Engström's personal home page</title>
-<link rel="stylesheet" type="text/css" href="css/default.css" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Personal homepage of Fredrik Engström, logician.">
+  <title>Fredrik Engström</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --surface: rgba(255,255,255,0.82);
+      --surface-strong: #ffffff;
+      --text: #162033;
+      --muted: #5f6b7a;
+      --accent: #264f99;
+      --accent-strong: #17356d;
+      --border: rgba(22,32,51,0.08);
+      --shadow: 0 10px 30px rgba(20, 32, 60, 0.08);
+      --radius: 20px;
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(38,79,153,0.10), transparent 30%),
+        radial-gradient(circle at top right, rgba(38,79,153,0.08), transparent 24%),
+        var(--bg);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration-thickness: 1.5px;
+      text-underline-offset: 0.16em;
+    }
+    a:hover { color: var(--accent-strong); }
+
+    .wrap {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      padding: 2rem 0 1rem;
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(12px);
+      background: rgba(245,247,251,0.74);
+      border-bottom: 1px solid rgba(22,32,51,0.05);
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: .9rem;
+      flex-wrap: wrap;
+      font-size: .95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: .5rem .8rem;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-strong);
+      background: rgba(38,79,153,0.08);
+    }
+
+    main { padding: 2rem 0 4rem; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .hero-card, .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: .4rem .8rem;
+      border-radius: 999px;
+      background: rgba(38,79,153,0.10);
+      color: var(--accent-strong);
+      font-size: .86rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0 0 .3rem;
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      font-size: clamp(1.15rem, 2.3vw, 1.4rem);
+      color: var(--muted);
+      margin: 0 0 1.25rem;
+    }
+
+    .lead p {
+      margin: 0 0 1rem;
+      max-width: 68ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin-top: 1.5rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      padding: .8rem 1.1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .button.primary {
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      box-shadow: 0 10px 24px rgba(38,79,153,0.25);
+    }
+
+    .button.secondary {
+      color: var(--accent-strong);
+      background: rgba(38,79,153,0.08);
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .portrait {
+      padding: 1rem;
+    }
+
+    .portrait img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: calc(var(--radius) - 6px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.55fr .95fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+
+    section.panel {
+      padding: 1.4rem 1.4rem 1.2rem;
+      scroll-margin-top: 6rem;
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: 1.45rem;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 1.4rem 0 .75rem;
+      font-size: 1rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .8rem;
+    }
+
+    .list li {
+      padding: .9rem 1rem;
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: .8rem;
+    }
+
+    .meta-list li {
+      padding: 1rem;
+      background: var(--surface-strong);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+    }
+
+    .muted { color: var(--muted); }
+
+    .footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .footer a { color: inherit; }
+
+    @media (max-width: 900px) {
+      .hero, .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .site-header {
+        position: static;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button { transition: none; }
+    }
+  </style>
 </head>
 <body>
-<div id="container">
-<div id="top">
-<div id="header">
-<h1 id="title">Fredrik Engström</h1>
-</div>
-<div class="nav bl">
-<div class="nav2 br">
-<p id="slogan">Logician</p>
-</div>
-</div>
-<div id="content">
-<main id="left"><img src="images/fredrik.jpg" alt="Portrait of Fredrik Engström" class="floatright" />
-<p>
-I am a Senior Lecturer and Docent in Logic.
-</p>
-<p>
-I completed my PhD in Mathematics in 2004 at the University of Birmingham and Chalmers University of Technology. My dissertation, supervised by Richard W. Kaye, focused on mathematical logic, in particular on models of Peano arithmetic.
-</p>
-<p>
-Following my doctoral studies, I held a position as Senior Lecturer in Mathematics at Mid Sweden University in Sundsvall. In 2006, I joined the University of Gothenburg, where I have since been active in research, teaching, and academic leadership. From 2016 to 2021, I served as Head of the Department of Philosophy, Linguistics and Theory of Science. Since 2023, I have held the role of Deputy Dean of the Faculty of Humanities.
-</p>
-<h3>Papers</h3>
-<ul>
-    <li>The propositional logic of teams (with O. Lorimer Olsson) arXiv:2303.14022, 2023 [<a href="https://arxiv.org/pdf/2303.14022.pdf">pdf</a>]</li>
+  <header class="site-header">
+    <div class="wrap nav">
+      <div class="brand">Fredrik Engström</div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#">Top</a>
+        <a href="#papers">Papers</a>
+        <a href="#presentations">Presentations</a>
+                <a href="#contact">Contact</a>
+
+        <a href="#other">Miscellaneous</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-card">
+   <!--     <div class="eyebrow">Logician</div>-->
+        <h1 id="page-title">Fredrik Engström</h1>
+        <p class="subtitle">Senior Lecturer and Docent in Logic</p>
+        <div class="lead">
+
+
+  <p>
+    Fredrik Engström is Senior Lecturer and Docent in Logic at the University of Gothenburg, 
+    where he is actively engaged in research, teaching, and academic leadership. Since 2023, 
+    he serves as Deputy Dean of the Faculty of Humanities, with responsibility for doctoral 
+    education and facilities.
+  </p>
+
+  <p>
+    He received his PhD in Mathematics in 2004 from Chalmers University of Technology, with 
+    parts of his doctoral studies conducted at the University of Birmingham under the 
+    supervision of Richard W. Kaye. His dissertation was in mathematical logic, focusing on 
+    models of Peano arithmetic.
+  </p>
+
+  <p>
+    Following his PhD, Engström worked as Senior Lecturer in Mathematics at Mid Sweden 
+    University in Sundsvall. He joined the University of Gothenburg in 2006, where he has 
+    held positions as research assistant, researcher, and since 2018, Senior Lecturer in 
+    Logic. From 2016 to 2021, he served as Head of the Department of Philosophy, Linguistics 
+    and Theory of Science.
+  </p>
+
+  <p>
+    His current research includes the project <em>The Foundations of Team Semantics: Meaning 
+    in an Enriched Framework</em>, funded by the Swedish Research Council (VR), where he acts 
+    as project leader.
+  </p>
+
+        </div>
+        <div class="hero-actions">
+          <a class="button primary" href="#papers">Papers</a>
+          <a class="button primary" href="#presentations">Presentations</a>
+          <a class="button secondary" href="mailto:fredrik.engstrom@gu.se">Send email</a>
+        </div>
+      </div>
+      <aside class="panel portrait">
+        <img src="https://engstrom.morot.org/images/fredrik5.jpg" alt="Portrait of Fredrik Engström">
+      
+                </aside>
+
+    </section>
+
+    <div class="grid">
+      <div>
+        <section class="panel" id="papers">
+          <h2>Papers</h2>
+          <ul class="list">
+            <li>The propositional logic of teams (with O. Lorimer Olsson) arXiv:2303.14022, 2023 [<a href="https://arxiv.org/pdf/2303.14022.pdf">pdf</a>]</li>
 <li>Generalized quantifiers using team semantics arXiv:2404.17295, 2024 [<a href="http://arxiv.org/pdf/2404.17295.pdf">pdf</a>]</li>
 <li>Cognitively adequate complexity of reasoning in a
 description logic (with J. T. Fokkens) In Proceedings of the 2nd International Workshop on Cognitive Aspects of Knowledge Representation, CEUR Workshop Proceedings, Vol. 3548, 2023 [<a href="https://ceur-ws.org/Vol-3548/paper6.pdf">pdf</a>]</li>
@@ -54,18 +358,13 @@ description logic (with J. T. Fokkens) In Proceedings of the 2nd International W
 <li>A note on standard systems and ultrafilters. Journal of Symbolic Logic, vol 73, no 3, pages 824-830 [<a href="https://dx.doi.org/10.2178/jsl/1230396749">doi</a> | <a href="material/ssy_and_ultrafilters_web.pdf">pdf</a>]</li>
 <li>Doctoral thesis: Expansions, omitting types, and standard systems [<a href="material/docthesis.pdf">pdf</a>]</li>
 <li>Licentiate thesis: Satisfaction classes in nonstandard models of first-order arithmetic [<a href="material/licthesis.pdf">pdf</a>]</li>
-</ul>
-<!--<h3>Projects</h3>
-<ul>
-<li>Project leader of the project <a href="http://www.flov.gu.se/english/research/projects/dependence-in-formal-and-natural-languages/">Dependence in formal and natural languages</a> sponsored by the Swedish research council.</li>
-<li>Member of the project <a href="http://www.illc.uva.nl/lint/">Logic for INTeraction</a>, sponsored by the Swedish research council and the European Science Foundation.</li>
-<li>Member of the project <a href="http://flov.gu.se/english/research/projects/logical-reasoning-with-bounded-cognitive-resources">Logical reasoning with bounded cognitive resources</a>
-sponsored by the department and the Swedish research council.</li>
-</ul>
--->
-<h3>Presentations</h3>
-<ul>
-<li>Substitutional Logics of Teams (Helsinki Workshop, 2026-04-22) [<a href="material/engstrom_helsinki2026.pdf">pdf</a>]</li>
+          </ul>
+        </section>
+
+        <section class="panel" id="presentations">
+          <h2>Presentations</h2>
+          <ul class="list">
+           <li>Substitutional Logics of Teams (Helsinki Workshop, 2026-04-22) [<a href="material/engstrom_helsinki2026.pdf">pdf</a>]</li>
 <li>Sanning och konsekvens: En logikers perspektiv (Göteborgs universitet, 2026-04-19) [<a href="material/Sanning%20och%20konsekvens.pdf">pdf</a>]</li>
 <li>Team semantics and substitutionality (Nordic Online Logic seminar, 2025-01-27) [<a href="material/engstrom_NOL_2025.pdf">pdf</a>]</li>
 <li>The propositional logic of teams (Dagstuhl 2024, 2024-03-13) [<a href="material/engstrom_dagstuhl2024_propositional_logic_of_teams.pdf">pdf</a>]</li>
@@ -118,56 +417,41 @@ sponsored by the department and the Swedish research council.</li>
 <li>Satisfaction classes in nonstandard models of first-order arithmetic (Licentiate Seminar in Chalmers, Göteborg, 2002-09-24) [<a href="material/licsem.pdf">pdf</a>]</li>
 <li>Resplendency and omitting types (British Logic Colloquium 2002 in Birmingham, 2002-09-13) [<a href="material/blc2002.pdf">pdf</a>]</li>
 <li>Satisfaction classes or How to define truth in a non-standard world (Logic seminar at the philosophy department, 2001-11-06) [<a href="material/satcl.pdf">pdf</a>]</li>
-</ul>
-<h3>Other stuff</h3>
-<ul>
-<li>A small english-swedish mathematical dictionary (originally by Anders Vretblad, Uppsala) [<a href="material/ordlista.pdf">pdf</a>]</li>
-</ul>
-</main>
-<aside id="right">
-<div class="sideitem"></div>
-<div class="sideitem">
-<h4 class="itemtitle">Links</h4>
-<ul>
-<li><a href="http://flov.gu.se/personal/fredrikengstrom/">My official homepage at GU</a></li>
-<li><a href="http://gu.se/flov">Department of Philosophy, Linguistics and Theory of Science</a></li>
-<!--
-<li><a href="http://flov.gu.se/forskning/forskningsomraden/logik/">Logic at GU</a></li>
-<li><a href="http://scholar.google.se/citations?user=DrXuB6oAAAAJ">I on Google Scholar</a>.</li>
-<li><a href="http://gu-se.academia.edu/FredrikEngstr%C3%B6m">My page</a> at Academia.edu.</li>
-<li><a href="https://www.researchgate.net/profile/Fredrik_Engstroem/">My page</a> at ResearchGate.</li>
-<li><a href="http://gup.ub.gu.se/lists/publications/people/html/index.xsql?ids=4350&amp;names=Engstr%C3%B6m%2C Fredrik %281977%29 %5B4350%5D&amp;lyear=1900&amp;hyear=2020&amp;sort=year&amp;format=default&amp;rows=100">I in GUP</a> (Göteborgs Universitets Publikationer).</li>
-<li><a href="http://arxiv.org/find/math/1/au:+Engstrom_F/0/1/0/all/0/1">I on arXiv.org</a>.</li>-->
-</ul>
-<h4 class="itemtitle">Contact details</h4>
-<ul>
-<li>My office is at Renströmsgatan 6.</li>
-<li>Call me at +46-31-786 6335</li>
-<li>
-<table role="presentation">
-<tr><td>Department of Philosophy, Linguistics and Theory of Science</td></tr>
-<tr><td>University of Gothenburg</td></tr>
-<tr><td>Box 200</td></tr>
-<tr><td>405 30 Göteborg</td></tr>
-<tr><td>Sweden</td></tr>
-</table>
-</li>
-<li>Send email to <a href="mailto:fredrik.engstrom@gu.se">fredrik.engstrom@gu.se</a>.</li>
-</ul>
-</div>
-</aside>
-</div>
-<div class="footer tl">
-<div class="tr">
-<div class="br">
-<div class="bl">
-<div id="designcredit"> <p> </p> </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div id="bottom"></div>
-</div>
+          </ul>
+        </section>
+      </div>
+
+      <aside>
+       
+
+        <section class="panel" id="contact">
+          <h2>Contact details</h2>
+          <ul class="meta-list">
+            <li><strong>Offices</strong><br>J549 and C418 at Renströmsgatan 6.</li>
+            <li><strong>Phone</strong><br><a href="tel:+46317866335">+46-31-786 6335</a></li>
+            <li><strong>Postal address</strong><br>Department of Philosophy, Linguistics and Theory of Science<br>University of Gothenburg<br>Box 200<br>405 30 Göteborg<br>Sweden</li>
+            <li><strong>Email</strong><br><a href="mailto:fredrik.engstrom@gu.se">fredrik.engstrom@gu.se</a></li>
+          </ul>
+        </section>
+         <section class="panel" id="other">
+          <h2>Miscellaneous</h2>
+          <ul class="meta-list">
+            <li>A small english-swedish mathematical dictionary (originally by Anders Vretblad, Uppsala) [<a href="/other/mathdict.pdf">pdf</a>]</li>
+          </ul>
+
+         <!-- <h3>Links</h3>-->
+          <ul class="meta-list">
+            <li><a href="https://www.gu.se/om-universitetet/hitta-person/fredrikengstrom">Offical university webpage</a></li>
+            <li><a href="https://www.gu.se/en/flov">Department of Philosophy, Linguistics and Theory of Science</a></li>
+            <li><a href="https://www.gu.se/en/humanities">Faculty of Humanities</a></li>
+          </ul>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer wrap">
+    <p></p>
+  </footer>
 </body>
 </html>

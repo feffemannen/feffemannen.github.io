@@ -182,14 +182,16 @@
     }
 
     .portrait {
-      padding: 1rem;
+      width: 100%;
+      max-width: 360px;
+      padding: .85rem;
+      justify-self: center;
     }
 
     .portrait img {
       display: block;
       width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
+      height: auto;
       border-radius: calc(var(--radius) - 6px);
     }
 
@@ -335,7 +337,7 @@
         </div>
       </div>
       <aside class="panel portrait">
-        <img src="images/fredrik5.webp" width="800" height="1065" alt="Portrait of Fredrik Engström" decoding="async" fetchpriority="high">
+        <img src="images/fredrik5.webp" width="600" height="600" alt="Portrait of Fredrik Engström" decoding="async" fetchpriority="high">
       
                 </aside>
 
